@@ -1,6 +1,6 @@
-# Dockerized Django Notes Application
+# Dockerized Django Web Application
 
-This repository contains a fully Dockerized Django-based notes application. The project leverages Docker for containerization, MySQL for the database, and NGINX as a reverse proxy server.
+This repository contains a fully Dockerized Django-based web application. The project leverages Docker for containerization, MySQL for the database, NGINX as a reverse proxy server, and Jenkins for CI/CD pipeline automation.
 
 ---
 
@@ -15,6 +15,7 @@ This repository contains a fully Dockerized Django-based notes application. The 
 ├── .env               # Environment variables file
 ├── docker-compose.yml # Docker Compose configuration
 ├── Dockerfile         # Docker configuration for Django app
+├── Jenkinsfile        # Jenkins pipeline configuration
 └── README.md          # Documentation
 ```
 
@@ -22,11 +23,12 @@ This repository contains a fully Dockerized Django-based notes application. The 
 
 ## Features
 
-- **Django Application:** Backend built with Django to manage notes.
+- **Django Application:** Backend built with Django to manage.
 - **MySQL Integration:** MySQL database for persistent data storage.
 - **NGINX Reverse Proxy:** Configured to handle incoming requests efficiently.
 - **Multi-Container Setup:** Orchestrated with Docker Compose for seamless integration of services.
 - **Environment Variables:** Securely managed sensitive configurations using `.env` file.
+- **Jenkins CI/CD Pipeline:** Automated build, test, and deployment process.
 
 ---
 
@@ -34,19 +36,20 @@ This repository contains a fully Dockerized Django-based notes application. The 
 
 - Docker
 - Docker Compose
+- Jenkins
 
 ---
 
 ## Setup Instructions
 
-1. Clone the repository:
+1. **Clone the repository:**
 
    ```bash
    git clone <repository-url>
    cd <repository-folder>
    ```
 
-2. Add environment variables:
+2. **Add environment variables:**
 
    Create a `.env` file with the following content:
 
@@ -57,13 +60,23 @@ This repository contains a fully Dockerized Django-based notes application. The 
    MYSQL_PASSWORD=<your-mysql-password>
    ```
 
-3. Build and run the application:
+3. **Set up Jenkins:**
+
+   - Install Jenkins on your system.
+   - Add the necessary plugins, such as Docker Pipeline and Git.
+   - Create a Jenkins job and point it to this repository.
+   - Configure the pipeline to automate the following steps:
+     - Clone the code.
+     - Build Docker images.
+     - Deploy the application using Docker Compose.
+
+4. **Build and run the application locally:**
 
    ```bash
    docker-compose up --build
    ```
 
-4. Access the application:
+5. **Access the application:**
 
    - **Frontend:** `http://localhost`
    - **Admin Panel:** `http://localhost/admin`
@@ -77,6 +90,7 @@ This repository contains a fully Dockerized Django-based notes application. The 
 - **NGINX**: Reverse proxy for managing requests and improving scalability.
 - **Docker**: Containerization platform for deploying the application.
 - **Docker Compose**: Tool for multi-container orchestration.
+- **Jenkins**: Continuous integration and deployment automation.
 
 ---
 
@@ -85,6 +99,7 @@ This repository contains a fully Dockerized Django-based notes application. The 
 - **Database Connection Issues:** Ensure that `.env` file values are correct and the MySQL container is running.
 - **404 Errors:** Check your Django URL patterns and the NGINX configuration.
 - **Port Conflicts:** Ensure no other services are using the defined ports (e.g., 80, 8000, 3306).
+- **Pipeline Failures:** Check the Jenkins logs for errors during the build or deployment stages.
 
 ---
 
@@ -92,7 +107,7 @@ This repository contains a fully Dockerized Django-based notes application. The 
 
 - Add unit tests for API endpoints.
 - Implement frontend for better user experience.
-- Integrate CI/CD pipeline for automated testing and deployment.
+- Extend Jenkins pipeline with automated testing and notifications.
 
 ---
 
